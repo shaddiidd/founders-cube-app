@@ -44,7 +44,7 @@ const Search = ({
       {onFilter && (
         <TouchableOpacity style={styles.button} onPress={openFilter}>
           {selectedOption ? (
-            <Text style={styles.buttonText}>{selectedOption}</Text>
+            <Text numberOfLines={1} style={styles.buttonText}>{selectedOption}</Text>
           ) : (
             <Icon name="funnel-outline" size={20} color="#fff" />
           )}

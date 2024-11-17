@@ -59,8 +59,10 @@ export const put = async (url, data = {}) => {
 
 // Axios DELETE request
 export const remove = async (url) => {
+  console.log(url);
+  
   try {
-    const response = await axiosInstance.delete(url);
+    const response = await axiosInstance.delete(url, body);
     return response.data;
   } catch (error) {
     if (!error.response.data) {

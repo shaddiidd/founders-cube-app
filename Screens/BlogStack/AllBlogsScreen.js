@@ -130,7 +130,7 @@ const AllBlogsScreen = ({ route }) => {
           style={styles.postBtn}
           activeOpacity={0.7}
         >
-          <Icon name="create" type="material" color="white" size={25} />
+          <Icon name="add" type="material" color="white" size={25} />
         </TouchableOpacity>
       )}
     </SafeAreaView>

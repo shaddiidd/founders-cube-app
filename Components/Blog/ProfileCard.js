@@ -78,7 +78,7 @@ const ProfileCard = () => {
         />
         <Text>Add links to connect with founders</Text>
       </View>
-      <TouchableOpacity style={styles.btn} activeOpacity={0.7} onPress={() => navigation.navigate("EditProfileScreen", { user, id: user.uid })}>
+      <TouchableOpacity style={styles.btn} activeOpacity={0.7} onPress={() => navigation.navigate("EditProfile", { user, id: user.uid })}>
         <Text style={styles.btnTxt}>Edit Profile</Text>
       </TouchableOpacity>
     </View>

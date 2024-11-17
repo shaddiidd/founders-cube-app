@@ -6,14 +6,14 @@ import ListItem from "../../Components/Account/ListItem";
 import CodeOfConducModal from "../../Components/Modals/CodeOfConducModal";
 
 const AccountHome = () => {
-  const { user, logout, setLoading, loading, getUserData } = useContext(Context);
+  const { user, logout, loading, getUserData } = useContext(Context);
   const navigation = useNavigation();
   const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    getUserData();
-  }, []);
+  const refreshAccount = () => {
+    setRefreshing(true);
+    getUserData().then(() => setRefreshing(false));
+  }
   const handleReferral = async () => {
     try {
       const message = `Hello,\n\nUse my founders cube referral code ${user.referralCode} to get a free month!\n\nDownload the founders cube app or visit https://community.founderscube.com/apply to join the founders community!`;
@@ -32,7 +32,7 @@ const AccountHome = () => {
         alignItems: 'center',
       }}
       refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={getUserData} />
+        <RefreshControl refreshing={refreshing} onRefresh={refreshAccount} />
       }
     >
       <View style={styles.profilePictureContainer}>

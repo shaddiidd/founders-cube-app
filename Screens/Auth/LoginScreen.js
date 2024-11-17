@@ -1,5 +1,17 @@
 import React, { useState, useContext } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet, Alert, SafeAreaView, ScrollView, StatusBar, KeyboardAvoidingView, Platform, Keyboard, TouchableWithoutFeedback } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  KeyboardAvoidingView,
+  Platform,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from "react-native";
 import AuthText from "../../Components/Text/AuthText";
 import Context from "../../Context";
 import { useNavigation } from "@react-navigation/native";
@@ -20,13 +32,13 @@ const LoginScreen = () => {
   });
 
   const setEmail = (email) => {
-    setData({
-      ...data,
+    setData((prevState) => ({
+      ...prevState,
       email: {
         text: email,
         error: false,
       },
-    });
+    }));
   };
 
   const setPassword = (password) => {
@@ -71,11 +83,16 @@ const LoginScreen = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
     >
-      <TouchableWithoutFeedback onPress={() => Platform.OS === "ios" && Keyboard.dismiss()}>
+      <TouchableWithoutFeedback
+        onPress={() => Platform.OS === "ios" && Keyboard.dismiss()}
+      >
         <SafeAreaView style={styles.container}>
           <StatusBar barStyle="dark-content" />
           <View style={styles.logoContainer}>
-            <Image source={require('../../assets/cube-whitebg.png')} style={styles.cube} />
+            <Image
+              source={require("../../assets/cube-whitebg.png")}
+              style={styles.cube}
+            />
           </View>
           <View style={styles.form}>
             <View style={styles.titleContainer}>
@@ -95,16 +112,29 @@ const LoginScreen = () => {
               secureTextEntry
               error={data.password.error}
             />
-            <TouchableOpacity activeOpacity={0.7} style={styles.loginBtn} onPress={login}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={styles.loginBtn}
+              onPress={login}
+            >
               <Text style={styles.loginBtnText}>Login</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.forgotPassword} activeOpacity={0.7} onPress={() => navigation.navigate("ForgotPassword")}>
-              <Text style={[styles.applyText, styles.applyBtn]}>Forgot Password</Text>
+            <TouchableOpacity
+              style={styles.forgotPassword}
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate("ForgotPassword")}
+            >
+              <Text style={[styles.applyText, styles.applyBtn]}>
+                Forgot Password
+              </Text>
             </TouchableOpacity>
           </View>
           <View style={styles.applyContainer}>
             <Text style={styles.applyText}>Not a member? </Text>
-            <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.navigate("Apply")}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate("Apply")}
+            >
               <Text style={[styles.applyText, styles.applyBtn]}>Apply now</Text>
             </TouchableOpacity>
           </View>
@@ -116,51 +146,51 @@ const LoginScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F6F7F7',
+    backgroundColor: "#F6F7F7",
     flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   logoContainer: {
     alignItems: "center",
-    marginTop: 20
+    marginTop: 20,
   },
   cube: {
     marginTop: 50,
     width: 100,
     height: 50,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   titleContainer: {
     alignItems: "center",
-    marginBottom: 20
+    marginBottom: 20,
   },
   title: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     fontWeight: "bold",
   },
   subtitle: {
     fontSize: 15,
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: 3,
   },
   form: {
-    width: '85%',
+    width: "85%",
   },
   loginBtn: {
-    backgroundColor: 'black',
+    backgroundColor: "black",
     borderRadius: 10,
     height: 55,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginVertical: 10,
-    padding: 1
+    padding: 1,
   },
   loginBtnText: {
-    color: 'white',
+    color: "white",
     fontSize: 15,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   forgotPassword: {
     justifyContent: "center",
@@ -173,13 +203,13 @@ const styles = StyleSheet.create({
   applyText: {
     fontSize: 15,
     fontWeight: "500",
-    color: "grey"
+    color: "grey",
   },
   applyBtn: {
     color: "black",
     fontWeight: "600",
-    marginBottom: 20
-  }
+    marginBottom: 20,
+  },
 });
 
 export default LoginScreen;

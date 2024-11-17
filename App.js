@@ -6,7 +6,6 @@ import NetInfo from "@react-native-community/netinfo";
 import NoNetworkScreen from "./NoNetworkScreen";
 import { ActivityIndicator, View, StyleSheet } from "react-native";
 import { linking } from "./linking";
-// import messaging from "@react-native-firebase/messaging";
 
 export default function App() {
   const [isConnected, setIsConnected] = useState(null);

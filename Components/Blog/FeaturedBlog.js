@@ -8,26 +8,48 @@ const FeaturedBlog = ({ blog = {} }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
-    <TouchableOpacity style={styles.card} activeOpacity={0.7} onPress={() => navigation.navigate("BlogScreen", { b: blog, id: blog.id })}>
+    <TouchableOpacity
+      style={styles.card}
+      activeOpacity={0.7}
+      onPress={() =>
+        navigation.navigate("BlogScreen", { b: blog, id: blog.id })
+      }
+    >
       <Image
-        source={{ uri: isImageLoaded ? blog.preview?.imageUrl : blog.preview?.dummyUrl || "" }}
+        source={{
+          uri: isImageLoaded
+            ? blog.preview?.imageUrl
+            : blog.preview?.dummyUrl || "",
+        }}
         style={styles.image}
         onLoad={() => setIsImageLoaded(true)}
       />
       <View style={styles.categoriesContainer}>
-            <View style={styles.category}>
-                <Icon name="heart" type="ionicon" size={16} color="#E02A2A" />
-                <Text style={{ fontWeight: "500" }}>{blog.likes}</Text>
-            </View>
-        {blog.topics?.length > 0 && blog.topics.map((topic) => (
+        <View style={styles.category}>
+          <Icon name="heart" type="ionicon" size={16} color="#E02A2A" />
+          <Text style={{ fontWeight: "500" }}>{blog.likes}</Text>
+        </View>
+        {blog.topics?.length > 0 &&
+          blog.topics.slice(0, 1).map((topic) => (
             <View key={topic} style={styles.category}>
-                <Text style={{ fontWeight: "500" }}>{topic.charAt(0).toUpperCase() + topic.slice(1)}</Text>
+              <Text style={{ fontWeight: "500" }}>
+                {topic.charAt(0).toUpperCase() + topic.slice(1)}
+              </Text>
             </View>
-        ))}
+          ))}
+        {blog?.topics?.length > 1 && (
+          <View style={styles.category}>
+            <Text style={{ fontWeight: "500" }}>
+              +{blog?.topics?.length - 1} more
+            </Text>
+          </View>
+        )}
       </View>
       <Text style={styles.title}>{blog.title}</Text>
       <Text style={styles.date}>{blog.created}</Text>
-      <Text style={styles.content} numberOfLines={3}>{blog.content}</Text>
+      <Text style={styles.content} numberOfLines={3}>
+        {blog.content}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -44,25 +66,25 @@ const styles = StyleSheet.create({
     elevation: 4,
     borderRadius: 15,
     width: "90%",
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   image: {
     width: "100%",
     height: 200,
     borderRadius: 15,
-    backgroundColor: "#ccc"
+    backgroundColor: "#ccc",
   },
   categoriesContainer: {
     flexDirection: "row",
     marginLeft: 10,
-    marginVertical: 10
+    marginVertical: 10,
   },
   category: {
     padding: 5,
     borderRadius: 8,
     marginRight: 8,
     flexDirection: "row",
-    backgroundColor: "#e6e6e6"
+    backgroundColor: "#e6e6e6",
   },
   title: {
     fontSize: 18,

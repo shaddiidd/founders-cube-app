@@ -21,7 +21,6 @@ import Context from "../../Context";
 import { Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import ProfileCard from "../../Components/Blog/ProfileCard";
-import TermsConditionsModal from "../../Components/Modals/TermsConditionsModal";
 
 const BlogScreen = () => {
   const [whatsappLink, setWhatsappLink] = useState("");
@@ -126,7 +125,7 @@ const BlogScreen = () => {
             style={styles.postBtn}
             activeOpacity={0.7}
           >
-            <Icon name="create" type="material" color="white" size={25} />
+            <Icon name="add" type="material" color="white" size={25} />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => navigation.navigate("MyBlogs")}

@@ -13,6 +13,9 @@ import { Icon } from "react-native-elements";
 const BlogCard = ({ blog, showStatus }) => {
   const navigation = useNavigation();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const displayedTopic = blog.topics
+    .reduce((a, b) => (a.length <= b.length ? a : b))
+    .replace(/^./, (char) => char.toUpperCase());
 
   return (
     <TouchableOpacity
@@ -31,14 +34,22 @@ const BlogCard = ({ blog, showStatus }) => {
           {blog.content}
         </Text>
         <View style={styles.categoriesContainer}>
-          {blog.topics &&
-            blog.topics.slice(0, 2).map((category) => (
-              <View key={category} style={styles.category}>
-                <Text style={{ fontWeight: "500" }}>
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </Text>
-              </View>
-            ))}
+          {blog?.topics?.length > 0 && (
+            <View style={styles.category}>
+              <Text style={{ fontWeight: "500" }}>
+                {displayedTopic.length > 15
+                  ? `${displayedTopic.slice(0, 15)}...`
+                  : displayedTopic}
+              </Text>
+            </View>
+          )}
+          {blog?.topics?.length > 1 && (
+            <View style={styles.category}>
+              <Text style={{ fontWeight: "500" }}>
+                +{blog?.topics?.length - 1}
+              </Text>
+            </View>
+          )}
         </View>
         <View
           style={[
@@ -71,7 +82,9 @@ const BlogCard = ({ blog, showStatus }) => {
             },
           ]}
         >
-          <Text style={{ color: "white" , fontWeight: "600", fontSize: 12}}>{blog.status.toUpperCase()}</Text>
+          <Text style={{ color: "white", fontWeight: "600", fontSize: 12 }}>
+            {blog.status.toUpperCase()}
+          </Text>
         </View>
       )}
     </TouchableOpacity>
@@ -108,7 +121,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginRight: 8,
     flexDirection: "row",
-    backgroundColor: "#e6e6e6"
+    backgroundColor: "#e6e6e6",
   },
   date: {
     color: "#716D6D",

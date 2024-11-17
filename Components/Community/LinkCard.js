@@ -9,7 +9,7 @@ import { Icon } from "react-native-elements";
 
 export default function LinkCard({ link, edit = false, onEdit, onRemove }) {
   const openURL = () => {
-    Linking.openURL(`https://${link.url}`);
+    Linking.openURL(link.url);
   };
 
   return (

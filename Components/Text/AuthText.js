@@ -17,8 +17,12 @@ const AuthText = ({ placeholder, value, onChangeText, secureTextEntry, error }) 
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
         style={styles.input}
-        keyboardType={(!secureTextEntry && Platform.OS === "ios") ? "email-address" : null}
+        returnKeyType="next"
+        // keyboardType={(!secureTextEntry && Platform.OS === "ios") ? "email-address" : null}
+        keyboardType={!secureTextEntry ? "email-address" : "default"}
+        textContentType={secureTextEntry ? "password" : "email"}
         autoCapitalize="none"
+        importantForAutofill="yes"
       />
     </View>
   );

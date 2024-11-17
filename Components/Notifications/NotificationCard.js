@@ -2,9 +2,11 @@ import { useNavigation } from "@react-navigation/native";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
 
-const NotificationCard = ({ notification }) => {
+const NotificationCard = ({ notification, read }) => {
   const navigation = useNavigation();
+
   const handlePress = () => {
+    read(notification.id);
     if (notification.redirect.path === "blog") {
       navigation.navigate("BlogScreen", { id: notification.redirect.id });
     } else if (notification.redirect.path === "onboarding") {

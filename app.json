@@ -21,14 +21,16 @@
       "bundleIdentifier": "com.nuhaverse.foundercube",
       "entitlements": {
         "aps-environment": "production"
-      }
+      },
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#F6F7F7"
       },
-      "package": "com.nuhaverse.foundercube"
+      "package": "com.nuhaverse.foundercube",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -41,6 +43,9 @@
     "runtimeVersion": "1.0.0",
     "updates": {
       "url": "https://u.expo.dev/f15b1fc4-640e-42c9-95b3-72988a9c98c3"
-    }
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }

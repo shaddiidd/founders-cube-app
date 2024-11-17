@@ -57,7 +57,7 @@ const MemberScreen = ({ route }) => {
     setShowFullBio(!showFullBio);
   };
 
-  if (!Object.keys(member).length)
+  if (!Object.keys(member).length || !displayName)
     return <View style={{ backgroundColor: "#F6F7F7", flex: 1 }} />;
 
   return (

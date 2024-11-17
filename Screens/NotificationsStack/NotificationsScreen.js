@@ -1,34 +1,67 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Alert, RefreshControl } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Alert,
+  RefreshControl,
+  TouchableOpacity,
+} from "react-native";
 import NotificationCard from "../../Components/Notifications/NotificationCard";
-import { get } from "../../fetch";
+import { get, post } from "../../fetch";
 import Context from "../../Context";
 import { useNavigation } from "@react-navigation/native";
+import { Icon } from "react-native-elements";
 
 const NotificationsScreen = () => {
   const [notifications, setNotifications] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
-  const {loading, setLoading} = useContext(Context);
+  const { loading, setLoading } = useContext(Context);
   const navigation = useNavigation();
 
   const fetchNotifications = () => {
     setRefreshing(true);
     get("notification")
       .then((response) => {
-        setNotifications(response);
+        const updatedResponse = Object.keys(response).map((id) => ({
+          id,
+          ...response[id],
+        }));
+        setNotifications(updatedResponse);
       })
-      .catch(() => Alert.alert("Sorry!", "There seems to be a problem. Please come back later."))
+      .catch(() =>
+        Alert.alert(
+          "Sorry!",
+          "There seems to be a problem. Please come back later."
+        )
+      )
       .finally(() => {
         setRefreshing(false);
         setLoading(false);
       });
-  }
+  };
   useEffect(() => {
     setLoading(true);
     fetchNotifications();
   }, []);
-  
-  if (loading) return <View style={styles.container} />
+
+  const read = (id) => {
+    post(`notification/read/${id}`)
+      .then(() => fetchNotifications())
+  }
+
+  const readAll = () => {
+    setLoading(true);
+    post("notification/readAll")
+      .then(() => {
+        setNotifications([]);
+        fetchNotifications();
+      })
+      .finally(() => setLoading(false));
+  };
+
+  if (loading) return <View style={styles.container} />;
   return (
     <ScrollView
       style={{ backgroundColor: "#F6F7F7" }}
@@ -37,7 +70,10 @@ const NotificationsScreen = () => {
         { justifyContent: notifications?.length > 0 ? "flex-start" : "center" },
       ]}
       refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={fetchNotifications} />
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={fetchNotifications}
+        />
       }
     >
       <View style={styles.content}>
@@ -45,13 +81,25 @@ const NotificationsScreen = () => {
           notifications?.map((notification) => (
             <NotificationCard
               notification={notification}
+              read={read}
               key={notification.created}
             />
           ))
         ) : (
-          <Text style={styles.description}>You have no notifications yet.</Text>
+          <Text style={styles.description}>You have no notifications.</Text>
         )}
       </View>
+      {notifications.length ? (
+        <TouchableOpacity
+          onPress={readAll}
+          style={styles.postBtn}
+          activeOpacity={0.7}
+        >
+          <Icon name="eye-outline" type="ionicon" color="white" size={25} />
+        </TouchableOpacity>
+      ) : (
+        <></>
+      )}
     </ScrollView>
   );
 };
@@ -71,6 +119,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 20,
     textAlign: "center",
+  },
+  postBtn: {
+    position: "absolute",
+    backgroundColor: "#3E6471",
+    borderRadius: 25,
+    bottom: 15,
+    right: 15,
+    width: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 5,
   },
 });
 
