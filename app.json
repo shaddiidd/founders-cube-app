@@ -1,28 +1,46 @@
 {
   "expo": {
-    "name": "cube-mobile-refactored",
-    "slug": "cube-mobile-refactored",
+    "name": "Founders Cube",
+    "slug": "founders-cube",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#F6F7F7"
+    },
+    "notification": {
+      "icon": "./assets/icon.png",
+      "color": "#000000"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.nuhaverse.foundercube",
+      "entitlements": {
+        "aps-environment": "production"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#F6F7F7"
+      },
+      "package": "com.nuhaverse.foundercube"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f15b1fc4-640e-42c9-95b3-72988a9c98c3"
+      }
+    },
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/f15b1fc4-640e-42c9-95b3-72988a9c98c3"
     }
   }
 }

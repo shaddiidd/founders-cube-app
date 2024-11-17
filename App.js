@@ -1,20 +1,49 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState, useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import Provider from "./Provider";
+import Container from "./Container";
+import NetInfo from "@react-native-community/netinfo";
+import NoNetworkScreen from "./NoNetworkScreen";
+import { ActivityIndicator, View, StyleSheet } from "react-native";
+import { linking } from "./linking";
+// import messaging from "@react-native-firebase/messaging";
 
 export default function App() {
+  const [isConnected, setIsConnected] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      setIsConnected(state.isConnected);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (isConnected === null) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
+  if (!isConnected) {
+    return <NoNetworkScreen />;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer linking={linking}>
+      <Provider>
+        <Container />
+      </Provider>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  loadingContainer: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
