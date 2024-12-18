@@ -97,7 +97,7 @@ const MemberScreen = ({ route }) => {
           "No bio yet..."
         )}
       </Text>
-      {member?.bio && member.bio.length > 330 ? (
+      {member?.bio && member.bio.split(" ").length > 40 ? (
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={toggleBio}
