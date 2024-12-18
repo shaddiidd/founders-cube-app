@@ -1,12 +1,18 @@
-import { View, StyleSheet, Alert, Dimensions } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import {
+  View,
+  StyleSheet,
+  Alert,
+  Dimensions,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+import PagerView from "react-native-pager-view";
 import { get } from "../../fetch";
-import { useContext, useEffect, useState } from "react";
 import Context from "../../Context";
 import PlansOverviewCard from "../../Components/Account/PlansOverviewCard";
-import "react-native-gesture-handler";
-import Carousel from "react-native-reanimated-carousel";
 
-export default function MembershipPlansScreen() {
+export default function MembershipPlansScreen({ navigation }) {
   const [packs, setPacks] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const { setLoading } = useContext(Context);
@@ -34,21 +40,26 @@ export default function MembershipPlansScreen() {
 
   return (
     <View style={styles.container}>
-      <Carousel
-        width={width}
-        data={packs}
-        renderItem={({ item }) => (
-          <View style={styles.carouselItemContainer}>
-            <PlansOverviewCard pack={item} />
-          </View>
-        )}
-        mode="default"
-        onSnapToItem={(index) => setCurrentIndex(index)}
-        loop={false}
-        pagingEnabled
-        style={styles.carousel}
-        containerCustomStyle={{ paddingLeft: "5%" }}
-      />
+      {packs.length ? (
+        <PagerView
+          style={styles.pagerView}
+          initialPage={0}
+          onPageSelected={(e) => setCurrentIndex(e.nativeEvent.position)}
+        >
+          {packs.map((item, index) => (
+            <View style={styles.page} key={item.id}>
+              <PlansOverviewCard
+                pack={item}
+                onPress={() =>
+                  navigation.navigate("PaymentMethodScreen", { pack: item })
+                }
+              />
+            </View>
+          ))}
+        </PagerView>
+      ) : (
+        <></>
+      )}
 
       {packs.length > 1 && (
         <View style={styles.paginationContainer}>
@@ -71,33 +82,38 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F6F7F7",
-    alignItems: "center",
   },
-  carousel: {
-    height: "95%",
-    paddingLeft: "5%",
-  },
-  carouselItemContainer: {
+  pagerView: {
     flex: 1,
-    alignItems: "center",
+    width: "100%",
+  },
+  page: {
+    flex: 1,
     justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    marginHorizontal: 10,
+    elevation: 2,
   },
   paginationContainer: {
     flexDirection: "row",
-    marginBottom: 25,
+    marginVertical: 20,
+    justifyContent: "center",
     alignItems: "center",
   },
   dot: {
-    width: 5,
-    height: 5,
-    borderRadius: 3,
-    marginHorizontal: 2,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginHorizontal: 3,
+    backgroundColor: "#ccc",
   },
   activeDot: {
+    width: 25,
+    height: 10,
+    borderRadius: 5,
     backgroundColor: "#000",
-    width: 20,
-    height: 6,
-    marginHorizontal: 2,
+    marginHorizontal: 3,
   },
   inactiveDot: {
     backgroundColor: "#ccc",

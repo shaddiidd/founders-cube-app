@@ -13,9 +13,9 @@ import Context from "../../Context";
 
 export default function OnboardingScreen({ route }) {
   const { id } = route.params;
-  const { user, loading, setLoading } = useContext(Context);
+  const { user, setLoading } = useContext(Context);
   const [notification, setNotification] = useState({});
-  
+
   useEffect(() => {
     setLoading(true);
     get(`onboarding/${id}`)
@@ -36,11 +36,11 @@ export default function OnboardingScreen({ route }) {
       const hasLink = line.includes("[[") && line.includes("]]");
 
       if (hasImage) {
-        return notification.videoLink ? (
+        return notification.videoUrl ? (
           <TouchableOpacity
             activeOpacity={0.7}
             key={index}
-            onPress={() => Linking.openURL(notification.videoLink)}
+            onPress={() => Linking.openURL(notification.videoUrl)}
             style={styles.imageContainer}
           >
             <Image
@@ -70,7 +70,6 @@ export default function OnboardingScreen({ route }) {
           </TouchableOpacity>
         );
       } else {
-        // Split **bold** text and regular text
         const parts = line.split(/(\*.*?\*)/g).map((part, idx) => {
           if (part.startsWith("*") && part.endsWith("*")) {
             return (
@@ -91,13 +90,12 @@ export default function OnboardingScreen({ route }) {
     });
   };
 
-  if (loading) return <View style={styles.container} />;
   return (
     <ScrollView style={{ backgroundColor: "#F6F7F7" }}>
       <View style={styles.container}>
         <View style={{ width: "90%" }}>
-          <Text style={styles.title}>{notification.title}</Text>
-          {renderContent(notification.content)}
+          <Text style={styles.title}>{notification?.title}</Text>
+          {notification?.content && renderContent(notification?.content)}
         </View>
       </View>
     </ScrollView>

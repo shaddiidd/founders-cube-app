@@ -1,4 +1,4 @@
-package com.nuhaverse.foundercube
+package com.nuhaverse.founderscube
 
 import android.app.Application
 import android.content.res.Configuration

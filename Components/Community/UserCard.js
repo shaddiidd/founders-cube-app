@@ -6,11 +6,11 @@ import {
   Linking,
   ImageBackground,
   Image,
-  Alert
+  Alert,
 } from "react-native";
 import { Icon } from "react-native-elements";
-import * as Contacts from 'expo-contacts';
-import * as FileSystem from 'expo-file-system';
+import * as Contacts from "expo-contacts";
+import * as FileSystem from "expo-file-system";
 
 export default function UserCard({ member = {}, displayName }) {
   const phoneCall = () => {
@@ -24,64 +24,82 @@ export default function UserCard({ member = {}, displayName }) {
   const addToContacts = async () => {
     try {
       const { status } = await Contacts.requestPermissionsAsync();
-      if (status !== 'granted') {
-        Alert.alert('Permission denied', 'Permission to access contacts was denied');
+      if (status !== "granted") {
+        Alert.alert(
+          "Permission denied",
+          "Permission to access contacts was denied"
+        );
         return;
       }
-  
+
       const [firstName, ...lastNameParts] = displayName.split(" ");
       const lastName = lastNameParts.join(" ");
-  
+
       let localImageUri = "";
       if (member?.preview?.imageUrl) {
         const imageUri = member.preview.imageUrl;
-  
+
         try {
           const downloadedImage = await FileSystem.downloadAsync(
             imageUri,
-            FileSystem.cacheDirectory + 'contact-image.jpg'
+            FileSystem.cacheDirectory + "contact-image.jpg"
           );
           localImageUri = downloadedImage.uri;
-        } catch (error) {
-          console.log('Error downloading image:', error);
-        }
+        } catch {}
       }
-  
+
       const contact = {
         [Contacts.Fields.FirstName]: firstName,
         [Contacts.Fields.LastName]: lastName || "",
-        [Contacts.Fields.Image]: localImageUri ? { uri: localImageUri } : undefined,
+        [Contacts.Fields.Image]: localImageUri
+          ? { uri: localImageUri }
+          : undefined,
         [Contacts.Fields.Company]: member.company || "",
-        [Contacts.Fields.PhoneNumbers]: [{ label: 'Mobile', number: member.phone }],
-        [Contacts.Fields.Emails]: [{ label: 'Work', email: member.email }],
-        [Contacts.Fields.UrlAddresses]: Object.values(member.links || {}).map(link => ({
-          label: link.title || 'Website',
-          url: link.url
-        }))  
+        [Contacts.Fields.PhoneNumbers]: [
+          { label: "Mobile", number: member.phone },
+        ],
+        [Contacts.Fields.Emails]: [{ label: "Work", email: member.email }],
+        [Contacts.Fields.UrlAddresses]: Object.values(member.links || {}).map(
+          (link) => ({
+            label: link.title || "Website",
+            url: link.url,
+          })
+        ),
       };
-  
+
       await Contacts.presentFormAsync(null, contact, { isNew: true });
-  
     } catch (error) {
       console.error("Error presenting contact form:", error);
-      Alert.alert('Error', 'An error occurred while presenting the contact form');
+      Alert.alert(
+        "Error",
+        "An error occurred while presenting the contact form"
+      );
     }
   };
-  
+
   return (
     <View style={styles.card}>
       <ImageBackground
         style={styles.img}
-        source={member.preview?.dummyUrl ? { uri: member.preview?.dummyUrl } : require("../../assets/profile_picture.png")}
+        source={
+          member.preview?.dummyUrl
+            ? { uri: member.preview?.dummyUrl }
+            : require("../../assets/profile_picture.png")
+        }
       >
         <Image
-          source={member?.preview?.imageUrl ?{ uri: member?.preview?.imageUrl } : ""}
+          source={
+            member?.preview?.imageUrl ? { uri: member?.preview?.imageUrl } : ""
+          }
           style={styles.img}
         />
         <TouchableOpacity
           onPress={addToContacts}
           activeOpacity={0.7}
-          style={[styles.userAction, { position: "absolute", top: 20, right: 20 }]}
+          style={[
+            styles.userAction,
+            { position: "absolute", top: 20, right: 20 },
+          ]}
         >
           <Icon name="bookmark-outline" size={24} color="white" />
         </TouchableOpacity>
@@ -104,26 +122,32 @@ export default function UserCard({ member = {}, displayName }) {
           <Text style={styles.industry}>{member?.industry}</Text>
         </View>
         <View style={styles.userActions}>
-          {member.phone && <TouchableOpacity
-            onPress={phoneCall}
-            activeOpacity={0.7}
-            style={styles.userAction}
-          >
-            <Icon name="phone" size={24} color="white" />
-          </TouchableOpacity>}
-          {member.email && <TouchableOpacity
-            onPress={email}
-            activeOpacity={0.7}
-            style={styles.userAction}
-          >
-            <Icon name="mail-outline" size={24} color="white" />
-          </TouchableOpacity>}
+          {member.phone && (
+            <TouchableOpacity
+              onPress={phoneCall}
+              activeOpacity={0.7}
+              style={styles.userAction}
+            >
+              <Icon name="phone" size={24} color="white" />
+            </TouchableOpacity>
+          )}
+          {member.email && (
+            <TouchableOpacity
+              onPress={email}
+              activeOpacity={0.7}
+              style={styles.userAction}
+            >
+              <Icon name="mail-outline" size={24} color="white" />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
       <View style={styles.cardSecondaryInfo}>
         <View style={styles.secondaryInfoItem}>
           <Text style={styles.secondaryInfoTitle}>Location</Text>
-          <Text style={styles.secondaryInfoSubtitle}>{member.country || "-"}</Text>
+          <Text numberOfLines={1} style={styles.secondaryInfoSubtitle}>
+            {member.country || "-"}
+          </Text>
         </View>
         <View style={styles.verticalSep} />
         <View style={styles.secondaryInfoItem}>
@@ -149,7 +173,7 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     overflow: "hidden",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   cardMainInfo: {
     flexDirection: "row",

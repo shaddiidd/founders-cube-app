@@ -86,9 +86,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.nuhaverse.foundercube'
+    namespace 'com.nuhaverse.founderscube'
     defaultConfig {
-        applicationId 'com.nuhaverse.foundercube'
+        applicationId 'com.nuhaverse.founderscube'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -1,28 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, FlatList, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  TextInput,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 
-const TextFieldWithDropdown = ({ options, onChange, placeholder, value, onSelect }) => {
+const TextFieldWithDropdown = ({
+  options,
+  onChange,
+  placeholder,
+  value,
+  onSelect,
+}) => {
   const [text, setText] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleTextChange = (input) => {
     setText(input);
-
+    
     if (input.length > 0) {
       const filtered = options.filter((item) =>
         item.toLowerCase().includes(input.toLowerCase())
       );
+      
       setFilteredData(filtered);
       setShowDropdown(true);
     } else {
-      setShowDropdown(false);
+      setFilteredData(options)
     }
   };
 
   const handleSelect = (label) => {
+    setFilteredData(options)
     onSelect(label);
-    setShowDropdown(false);
     setText("");
   };
 
@@ -33,9 +48,14 @@ const TextFieldWithDropdown = ({ options, onChange, placeholder, value, onSelect
         value={text}
         placeholder={placeholder}
         onChangeText={handleTextChange}
+        onFocus={() => {
+          setShowDropdown(true);
+          setFilteredData(options);
+        }}
+        onBlur={() => setShowDropdown(false)}
       />
 
-      {showDropdown && (
+      {/* {showDropdown && (
         <FlatList
           data={filteredData}
           keyExtractor={(item) => item}
@@ -46,6 +66,23 @@ const TextFieldWithDropdown = ({ options, onChange, placeholder, value, onSelect
           )}
           style={styles.dropdown}
         />
+      )} */}
+      {showDropdown && (
+        <ScrollView
+          style={styles.dropdown}
+          keyboardShouldPersistTaps="handled"
+          nestedScrollEnabled={true}
+        >
+          {filteredData.map((item, index) => (
+            <TouchableOpacity
+              style={styles.dropdownItem}
+              key={index}
+              onPress={() => handleSelect(item)}
+            >
+              <Text>{item}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       )}
     </View>
   );
@@ -69,6 +106,11 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     width: "100%",
+    maxHeight: 100,
+    backgroundColor: "white",
+    zIndex: 1,
+    position: "absolute",
+    top: 45
   },
   dropdownItem: {
     padding: 10,

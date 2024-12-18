@@ -10,10 +10,10 @@ import {
 } from "react-native";
 import { Icon } from "react-native-elements";
 
-export default function PlansOverviewCard({ pack = {} }) {
+export default function PlansOverviewCard({ onPress, pack = {} }) {
   const navigation = useNavigation();
   return (
-    <View style={styles.cardGradient}>
+    <View style={styles.cardContainer}>
       <View style={{ flexDirection: "row", alignItems: "center", marginTop: 8, marginBottom: 15 }}>
         {pack.isFavourite ? <Icon name="star" color="gold" /> : <></>}
         <Text style={styles.name}> {pack.name || ""}</Text>
@@ -30,7 +30,7 @@ export default function PlansOverviewCard({ pack = {} }) {
             </View>
           ))}
         </View>
-        <TouchableOpacity style={styles.btn} activeOpacity={0.7} onPress={() => navigation.navigate("PaymentMethodScreen", { pack })}>
+        <TouchableOpacity style={styles.btn} activeOpacity={0.7} onPress={onPress}>
           <Text style={styles.btnText}>Go {pack.name}</Text>
         </TouchableOpacity>
       </View>
@@ -39,9 +39,9 @@ export default function PlansOverviewCard({ pack = {} }) {
 }
 
 const styles = StyleSheet.create({
-  cardGradient: {
+  cardContainer: {
     backgroundColor: "black",
-    width: "90%",
+    width: "95%",
     height: "100%",
     padding: 7,
     shadowColor: "#000",
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     elevation: 4,
     borderRadius: 15,
     alignItems: "center",
-    // transform: "scale(1.15)",
   },
   name: {
     textAlign: "center",
@@ -109,7 +108,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: "black",
     marginTop: 10,
     borderWidth: 1.5,
     borderColor: "#000"

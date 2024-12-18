@@ -8,6 +8,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
+  Keyboard,
 } from "react-native";
 import AuthText from "../../Components/Text/AuthText";
 import { useNavigation } from '@react-navigation/native';
@@ -56,8 +57,9 @@ const ResetPasswordScreen = ({ route }) => {
   };
 
   const submit = async () => {
-    if (data.password.text === "") {
-      setData({ ...data, password: { text: "", error: true } });
+    Keyboard.dismiss();
+    if (data.password.text.length < 8) {
+      setData({ password: { text: "", error: true }, password_confirmation: { text: "", error: false } });
     } else if (data.password_confirmation.text !== data.password.text) {
       setData({ ...data, password_confirmation: { text: "", error: true } });
     } else {
@@ -90,7 +92,9 @@ const ResetPasswordScreen = ({ route }) => {
         value={data.password.text}
         onChangeText={setPassword}
         error={data.password.error}
+        reset
       />
+      {data.password.error && <Text style={styles.error}>Password must be at least 8 characters.</Text>}
       <AuthText
         style={styles.input}
         placeholder="Confirm new password"
@@ -137,12 +141,14 @@ const styles = StyleSheet.create({
   },
   loginBtnText: {
     color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 15,
+    fontWeight: "500",
   },
   error: {
     color: "red",
     marginBottom: 10,
+    marginTop: -5,
+    width: "100%"
   },
 });
 

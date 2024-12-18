@@ -10,6 +10,7 @@ import PaymentDetailsScreen from "../AccountStack/PaymentDetailsScreen.js";
 import Context from "../../Context.js";
 import { TouchableOpacity } from "react-native";
 import { Icon } from "react-native-elements";
+import SubscribeScreen from "./SubscribeScreen.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,7 +38,7 @@ const SubscribeStack = () => {
       }}
       initialRouteName="MembershipScreen"
     >
-      <Stack.Screen
+      {/* <Stack.Screen
         name="MembershipScreen"
         component={MembershipScreen}
         options={{
@@ -77,6 +78,13 @@ const SubscribeStack = () => {
         component={ViewImageScreen} 
         options={{
           title: "Screenshot"
+        }}
+      /> */}
+      <Stack.Screen
+        name="SubscribeScreen"
+        component={SubscribeScreen}
+        options={{
+          title: "Membership",
         }}
       />
     </Stack.Navigator>

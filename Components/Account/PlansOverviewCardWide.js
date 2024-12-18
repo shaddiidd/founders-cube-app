@@ -111,7 +111,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 10,
-    // paddingHorizontal: 20,
     marginTop: 15,
   },
   btnText: {

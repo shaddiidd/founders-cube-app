@@ -1,4 +1,4 @@
-package com.nuhaverse.foundercube
+package com.nuhaverse.founderscube
 
 import android.os.Build
 import android.os.Bundle

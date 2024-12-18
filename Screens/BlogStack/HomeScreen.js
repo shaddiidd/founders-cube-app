@@ -24,7 +24,7 @@ import ProfileCard from "../../Components/Blog/ProfileCard";
 
 const BlogScreen = () => {
   const [whatsappLink, setWhatsappLink] = useState("");
-  const { user, setLoading, loading, authCheck } = useContext(Context);
+  const { user, setLoading, authCheck } = useContext(Context);
   const navigation = useNavigation();
   const [blogs, setBlogs] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -75,7 +75,10 @@ const BlogScreen = () => {
   };
 
   const whatsapp = () => {
-    Linking.openURL(whatsappLink);
+    const linkCount = user?.links ? Object.keys(user.links).length : 0;
+    if (user?.preview?.imageUrl && user?.industry && user?.bio && linkCount)
+      Linking.openURL(whatsappLink);
+    else Alert.alert("Welcome!", "Please complete your profile before you join the WhatsApp group.");
   };
 
   if (!blogs.length || !whatsappLink.length) return <View style={styles.container} />;

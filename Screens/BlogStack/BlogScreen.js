@@ -97,7 +97,7 @@ export default function BlogScreen({ route }) {
             style={styles.image}
             onLoad={() => setIsImageLoaded(true)}
           />
-          <ScrollView
+          <View
             horizontal
             bounces={false}
             showsHorizontalScrollIndicator={false}
@@ -106,7 +106,7 @@ export default function BlogScreen({ route }) {
           >
             {blog.title ? (
               <View style={styles.category}>
-                <Icon name="heart" type="ionicon" size={16} color="#E02A2A" />
+                <Icon name={blog.isLiked ? "heart" : "heart-outline"} type="ionicon" size={16} color="#E02A2A" />
                 <Text style={{ fontSize: 16, fontWeight: "500" }}>
                   {" "}
                   {blog.likes}
@@ -123,7 +123,7 @@ export default function BlogScreen({ route }) {
                   </Text>
                 </View>
               ))}
-          </ScrollView>
+          </View>
           <View style={{ width: "90%" }}>
             <Text style={styles.title}>{blog.title}</Text>
             <Text style={styles.date}>{blog.created}</Text>
@@ -178,6 +178,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     width: "100%",
     paddingHorizontal: "5%",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    rowGap: 8
   },
   category: {
     paddingVertical: 5,

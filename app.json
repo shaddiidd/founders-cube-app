@@ -4,6 +4,7 @@
     "slug": "founders-cube",
     "version": "1.0.0",
     "orientation": "portrait",
+    "scheme": "founderscube",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
@@ -18,34 +19,48 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.nuhaverse.foundercube",
+      "requireFullScreen": true,
+      "bundleIdentifier": "com.nuhaverse.founderscube",
+      "associatedDomains": [
+        "applinks:community.thefounderscube.com"
+      ],
       "entitlements": {
         "aps-environment": "production"
       },
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "infoPlist": {
+        "UISupportedInterfaceOrientations": [
+          "UIInterfaceOrientationPortrait"
+        ],
+        "UIRequiresFullScreen": true,
+        "NSPhotoLibraryUsageDescription": "We use your photo library to allow you to upload images for personalized profiles and posting blogs. For example, you can select a photo to set as your profile picture or upload a photo to your blog.",
+        "NSContactsUsageDescription": "We use your contacts to let you save members' details to your device's contacts for easier access and communication.",
+        "NSUserNotificationUsageDescription": "We use notifications to send you updates about new blog posts, welcome messages, and reminders for your subscriptions."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#F6F7F7"
       },
-      "package": "com.nuhaverse.foundercube",
-      "googleServicesFile": "./google-services.json"
+      "package": "com.nuhaverse.founderscube",
+      "permissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.READ_CONTACTS",
+        "android.permission.POST_NOTIFICATIONS"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "runtimeVersion": "1.0.0",
     "extra": {
       "eas": {
-        "projectId": "f15b1fc4-640e-42c9-95b3-72988a9c98c3"
+        "projectId": "0f782880-8da4-4767-9343-427045cda97e"
       }
     },
-    "runtimeVersion": "1.0.0",
     "updates": {
-      "url": "https://u.expo.dev/f15b1fc4-640e-42c9-95b3-72988a9c98c3"
-    },
-    "plugins": [
-      "expo-secure-store"
-    ]
+      "url": "https://u.expo.dev/0f782880-8da4-4767-9343-427045cda97e"
+    }
   }
 }

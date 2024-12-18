@@ -37,8 +37,8 @@ const BlogCard = ({ blog, showStatus }) => {
           {blog?.topics?.length > 0 && (
             <View style={styles.category}>
               <Text style={{ fontWeight: "500" }}>
-                {displayedTopic.length > 15
-                  ? `${displayedTopic.slice(0, 15)}...`
+                {displayedTopic.length > 12
+                  ? `${displayedTopic.slice(0, 12)}...`
                   : displayedTopic}
               </Text>
             </View>
@@ -58,7 +58,7 @@ const BlogCard = ({ blog, showStatus }) => {
           ]}
         >
           <View style={styles.category}>
-            <Icon name="heart" type="ionicon" size={16} color="#E02A2A" />
+            <Icon name={blog.isLiked ? "heart" : "heart-outline"} type="ionicon" size={16} color="#E02A2A" />
             <Text style={{ fontWeight: "500" }}>{blog.likes}</Text>
           </View>
         </View>
@@ -71,6 +71,7 @@ const BlogCard = ({ blog, showStatus }) => {
         }}
         style={styles.image}
         onLoad={() => setIsImageLoaded(true)}
+        resizeMode="cover"
       />
       {showStatus && (
         <View

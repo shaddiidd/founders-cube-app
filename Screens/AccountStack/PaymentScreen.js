@@ -13,6 +13,7 @@ const PaymentScreen = ({ route }) => {
   const { loading, setLoading, user } = useContext(Context);
   const { pack, type } = route.params;
   const [selectedImage, setSelectedImage] = useState(null);
+  const [imageDimensions, setImageDimensions] = useState({ width: 150, height: 0 });
 
   useEffect(() => {
     setLoading(true);
@@ -45,7 +46,14 @@ const PaymentScreen = ({ route }) => {
     });
 
     if (!result.canceled) {
-      setSelectedImage(result.assets[0]);
+      const selected = result.assets[0];
+      setSelectedImage(selected);
+
+      Image.getSize(selected.uri, (width, height) => {
+        const aspectRatio = height / width;
+        const calculatedHeight = 150 * aspectRatio;
+        setImageDimensions({ width: 150, height: calculatedHeight });
+      });
     }
   };
 
@@ -70,8 +78,8 @@ const PaymentScreen = ({ route }) => {
       if (!uploadResponse.ok) {
         throw new Error(`Upload failed with status ${uploadResponse.status}`);
       }
-
     } catch (error) {
+      console.error("Error uploading file:", error);
     }
   };
 
@@ -94,23 +102,9 @@ const PaymentScreen = ({ route }) => {
         name: imageId,
       };
 
-      const dummyImage = await manipulateAsync(
-        selectedImage.uri,
-        [],
-        { format: SaveFormat.JPEG, compress: 0.25 }
-      );
-
-      const dummyId = `dummy-${Date.now()}`;
-      const dummyImageWithMeta = {
-        uri: dummyImage.uri,
-        type: "image/jpeg",
-        name: dummyId,
-      };
-
       await uploadFile(optimizedImageWithMeta);
-      await uploadFile(dummyImageWithMeta);
 
-      return { imageId, dummyId };
+      return { imageId };
     } catch (error) {
       console.error("Error manipulating image:", error);
     }
@@ -124,7 +118,7 @@ const PaymentScreen = ({ route }) => {
       pid: pack.id,
       image,
     };
-    
+
     post("sales", body)
       .then(() => Alert.alert("Success!", "Payment has been sent. You'll be notified as soon as we approve it."))
       .catch((error) => Alert.alert("Sorry!", error?.response?.data?.error || "There seems to be a problem. Please come back later."))
@@ -179,7 +173,10 @@ const PaymentScreen = ({ route }) => {
 
       {selectedImage && (
         <TouchableOpacity onPress={() => setSelectedImage(null)} activeOpacity={0.7} style={styles.imagePreviewContainer}>
-          <Image source={{ uri: selectedImage.uri }} style={styles.imagePreview} />
+          <Image
+            source={{ uri: selectedImage.uri }}
+            style={{ width: imageDimensions.width, height: imageDimensions.height, borderRadius: 10 }}
+          />
           <View style={styles.trash}>
             <Icon name="trash" type="ionicon" color="white" size={10} />
           </View>
@@ -192,11 +189,10 @@ const PaymentScreen = ({ route }) => {
           <Text style={styles.buttonText}> Upload Screenshot</Text>
         </TouchableOpacity>
       ) : (
-      <TouchableOpacity style={styles.button} onPress={submit}>
-        <Text style={styles.buttonText}>Submit</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={submit}>
+          <Text style={styles.buttonText}>Submit</Text>
+        </TouchableOpacity>
       )}
-
     </View>
   );
 };
@@ -256,20 +252,21 @@ const styles = StyleSheet.create({
   },
   imagePreviewContainer: {
     marginTop: 15,
-    width: 100,
-    height: 200,
     borderRadius: 10,
     borderColor: "#ccc",
     borderWidth: 1,
+    position: "relative",
     overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
   },
   imagePreview: {
     width: "100%",
-    height: "100%",
-    borderRadius: 10,
+    height: 200,
+    objectFit: "contain",
+    backgroundColor: "#ccc"
   },
+  
   trash: {
     backgroundColor: "red",
     width: 20,

@@ -9,7 +9,6 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
-  NativeModules,
 } from "react-native";
 import { useContext, useEffect, useState } from "react";
 import Context from "../../Context";
@@ -33,6 +32,10 @@ export default function NewBlogScreen({ route }) {
     ...(user.type === "admin" && { isPublished: b?.status === "published" }),
   });
   const navigation = useNavigation();
+
+  useEffect(() => {
+    if (id) navigation.setOptions({ title: "Edit Blog" });
+  }, [id]);
 
   useEffect(() => {
     setLoading(true);
@@ -102,8 +105,7 @@ export default function NewBlogScreen({ route }) {
           Alert.alert("Success!", "Your blog has been posted!");
           navigation.pop();
         })
-        .catch((error) => {
-          console.log(error.response.data);
+        .catch(() => {
           Alert.alert(
             "Sorry!",
             "There seems to be a problem. Please come back later."
@@ -118,8 +120,6 @@ export default function NewBlogScreen({ route }) {
     setBlog({ ...blog, topics: [...blog.topics, label] });
 
   const uploadFile = async (file) => {
-    console.log("file:", file);
-
     try {
       const response = await post("/file/uploadLink", {
         fileName: file.name,
@@ -140,9 +140,7 @@ export default function NewBlogScreen({ route }) {
       if (!uploadResponse.ok) {
         throw new Error(`Upload failed with status ${uploadResponse.status}`);
       }
-    } catch (error) {
-      console.log(error.response.data);
-    }
+    } catch {}
   };
 
   const uploadImage = async () => {
@@ -195,9 +193,7 @@ export default function NewBlogScreen({ route }) {
         cropping: true,
       });
       setSelectedImage({ ...result, uri: result.path });
-    } catch (error) {
-      console.log(error);
-    }
+    } catch {}
   };
 
   const pickImageAndroid = async () => {
@@ -223,15 +219,16 @@ export default function NewBlogScreen({ route }) {
     <KeyboardAvoidingView
       style={{ flex: 1 }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 88 : 0}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 88 : 130}
     >
       <ScrollView
+        keyboardShouldPersistTaps="handled"
+        nestedScrollEnabled={true}
         contentContainerStyle={{ alignItems: "center" }}
         style={{ backgroundColor: "#F6F7F7" }}
       >
         <TouchableOpacity
           activeOpacity={0.7}
-          // onPress={pickImageAndroid}
           onPress={Platform.OS === "ios" ? pickImageIOS : pickImageAndroid}
           style={styles.imagePicker}
         >
@@ -335,7 +332,7 @@ export default function NewBlogScreen({ route }) {
 const styles = StyleSheet.create({
   input: {
     width: "90%",
-    fontSize: 16,
+    fontSize: 18,
     marginTop: 15,
     fontWeight: "600",
   },
@@ -343,6 +340,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginVertical: 10,
     width: "90%",
+    flexWrap: "wrap",
   },
   topic: {
     padding: 5,
@@ -355,13 +353,14 @@ const styles = StyleSheet.create({
   },
   content: {
     flexShrink: 1,
-    minHeight: 100,
+    minHeight: 200,
     width: "90%",
     borderTopWidth: 1,
     borderColor: "#ccc",
     paddingVertical: 15,
     marginTop: 15,
     textAlignVertical: "top",
+    fontSize: 16,
   },
   characterCount: {
     fontWeight: "500",
@@ -372,7 +371,6 @@ const styles = StyleSheet.create({
   imagePicker: {
     width: "90%",
     aspectRatio: 16 / 9,
-    // borderWidth: 1,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",

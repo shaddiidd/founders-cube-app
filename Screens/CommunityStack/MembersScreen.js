@@ -8,6 +8,7 @@ import {
   RefreshControl,
   ScrollView,
   Keyboard,
+  Alert,
 } from "react-native";
 import { Icon } from "react-native-elements";
 import MembersCard from "../../Components/Community/MembersCard";
@@ -48,8 +49,8 @@ const MembersScreen = ({ route }) => {
         selectedOption,
         verifiedMembers
       );
-    } catch (e) {
-      // handle error
+    } catch {
+      Alert.alert("Sorry!", "There seems to be a problem. Please come back later.");
     } finally {
       setLoading(false);
       setRefreshing(false);

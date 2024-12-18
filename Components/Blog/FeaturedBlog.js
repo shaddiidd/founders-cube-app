@@ -23,10 +23,11 @@ const FeaturedBlog = ({ blog = {} }) => {
         }}
         style={styles.image}
         onLoad={() => setIsImageLoaded(true)}
+        resizeMode="cover"
       />
       <View style={styles.categoriesContainer}>
         <View style={styles.category}>
-          <Icon name="heart" type="ionicon" size={16} color="#E02A2A" />
+          <Icon name={blog.isLiked ? "heart" : "heart-outline"} type="ionicon" size={16} color="#E02A2A" />
           <Text style={{ fontWeight: "500" }}>{blog.likes}</Text>
         </View>
         {blog.topics?.length > 0 &&

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Context from "./Context";
@@ -43,7 +43,7 @@ const Provider = ({ children }) => {
         const response = await get("auth/session");
         const userData = response.userData;
 
-        setUser({ ...user, ...userData });
+        setUser({ ...user, ...userData, expiry: userData.expiry });
         setIsAuthenticated(true);
         setToken(response.token);
         setAuthorizationToken(response.token);
@@ -68,14 +68,12 @@ const Provider = ({ children }) => {
     setLoading(true);
     try {
       const response = await post("auth/login", data);
-      console.log(response.data.token);
       setToken(response.data.token);
       await AsyncStorage.setItem("token", response.data.token);
       setAuthorizationToken(response.data.token);
+      // await registerNotificationToken();
       setUser(response.data.userData);
       setIsAuthenticated(true);
-
-      await registerNotificationToken();
     } catch {
       Alert.alert(
         "Sorry!",
@@ -89,14 +87,12 @@ const Provider = ({ children }) => {
   const registerNotificationToken = async () => {
     try {
       let deviceId = await AsyncStorage.getItem("deviceId");
-      
       if (!deviceId) {
         deviceId = `device-${Date.now()}`;
         await AsyncStorage.setItem("deviceId", deviceId);
       }
       const expoPushToken = (await Notifications.getExpoPushTokenAsync()).data;
       await post(`notification/token/${deviceId}`, { token: expoPushToken });
-      
     } catch (error) {
       console.error("Error registering notification token:", error);
     }
@@ -104,11 +100,10 @@ const Provider = ({ children }) => {
 
   const removeNotificationToken = async () => {
     try {
-      const deviceId = await AsyncStorage.getItem("deviceId");          
+      const deviceId = await AsyncStorage.getItem("deviceId");
       await remove(`notification/token/${deviceId}`);
-      await Notifications.deleteExpoPushTokenAsync();
     } catch (error) {
-      console.error("Error removing notification token:", error);
+      console.error("Error removing notification token:", error.response.data);
     }
   };
 

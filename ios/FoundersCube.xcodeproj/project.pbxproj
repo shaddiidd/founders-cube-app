@@ -3,43 +3,36 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09357D04576508276D2071B7 /* Pods_FoundersCube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD009266EE253DAD663377 /* Pods_FoundersCube.framework */; };
+		0D81FDBAA8544C358457CE07 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DD1E66955DE2C6D6857FB8C2 /* PrivacyInfo.xcprivacy */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2FF1EA5CB4B64E60A7A637B4 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403EEBAE9994F158AC41666 /* noop-file.swift */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		41ED1E16EE0966A3CDF2FE5D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 031568E5ED8BE73363C7FDA2 /* PrivacyInfo.xcprivacy */; };
-		4D6DB4C72CE93E8500CB2030 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4D6DB4C62CE93E8500CB2030 /* FirebaseAnalytics */; };
-		4D6DB4C92CE93E8500CB2030 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 4D6DB4C82CE93E8500CB2030 /* FirebaseAnalyticsOnDeviceConversion */; };
-		4D6DB4CB2CE93E8500CB2030 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 4D6DB4CA2CE93E8500CB2030 /* FirebaseAnalyticsWithoutAdIdSupport */; };
-		4D6DB4CD2CE93E8500CB2030 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 4D6DB4CC2CE93E8500CB2030 /* FirebaseAppCheck */; };
-		4D6DB4CF2CE93E8500CB2030 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 4D6DB4CE2CE93E8500CB2030 /* FirebaseAppDistribution-Beta */; };
-		4D6DB4D12CE93EA600CB2030 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D6DB4D02CE93EA600CB2030 /* GoogleService-Info.plist */; };
+		96905EF65AED1B983A6B3ABC /* libPods-FoundersCube.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-FoundersCube.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		E26765FCA7EA4035A96FA2E3 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A40CCA77543779B354646 /* noop-file.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		031568E5ED8BE73363C7FDA2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = FoundersCube/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		0403EEBAE9994F158AC41666 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "FoundersCube/noop-file.swift"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* FoundersCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundersCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = FoundersCube/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = FoundersCube/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FoundersCube/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FoundersCube/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FoundersCube/main.m; sourceTree = "<group>"; };
-		4D6DB4D02CE93EA600CB2030 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		34E79A073166412596E27468 /* FoundersCube-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "FoundersCube-Bridging-Header.h"; path = "FoundersCube/FoundersCube-Bridging-Header.h"; sourceTree = "<group>"; };
+		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-FoundersCube.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FoundersCube.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C2E3173556A471DD304B334 /* Pods-FoundersCube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoundersCube.debug.xcconfig"; path = "Target Support Files/Pods-FoundersCube/Pods-FoundersCube.debug.xcconfig"; sourceTree = "<group>"; };
-		78740507ECAB4511A352ECDA /* FoundersCube-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "FoundersCube-Bridging-Header.h"; path = "FoundersCube/FoundersCube-Bridging-Header.h"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-FoundersCube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoundersCube.release.xcconfig"; path = "Target Support Files/Pods-FoundersCube/Pods-FoundersCube.release.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = FoundersCube/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		BF8A40CCA77543779B354646 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "FoundersCube/noop-file.swift"; sourceTree = "<group>"; };
-		C4AD009266EE253DAD663377 /* Pods_FoundersCube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoundersCube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD1E66955DE2C6D6857FB8C2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = FoundersCube/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-FoundersCube/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,12 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D6DB4C72CE93E8500CB2030 /* FirebaseAnalytics in Frameworks */,
-				4D6DB4C92CE93E8500CB2030 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
-				4D6DB4CD2CE93E8500CB2030 /* FirebaseAppCheck in Frameworks */,
-				4D6DB4CB2CE93E8500CB2030 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				4D6DB4CF2CE93E8500CB2030 /* FirebaseAppDistribution-Beta in Frameworks */,
-				09357D04576508276D2071B7 /* Pods_FoundersCube.framework in Frameworks */,
+				96905EF65AED1B983A6B3ABC /* libPods-FoundersCube.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +52,6 @@
 		13B07FAE1A68108700A75B9A /* FoundersCube */ = {
 			isa = PBXGroup;
 			children = (
-				4D6DB4D02CE93EA600CB2030 /* GoogleService-Info.plist */,
 				BB2F792B24A3F905000567C9 /* Supporting */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -72,9 +59,9 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				BF8A40CCA77543779B354646 /* noop-file.swift */,
-				78740507ECAB4511A352ECDA /* FoundersCube-Bridging-Header.h */,
-				031568E5ED8BE73363C7FDA2 /* PrivacyInfo.xcprivacy */,
+				0403EEBAE9994F158AC41666 /* noop-file.swift */,
+				34E79A073166412596E27468 /* FoundersCube-Bridging-Header.h */,
+				DD1E66955DE2C6D6857FB8C2 /* PrivacyInfo.xcprivacy */,
 			);
 			name = FoundersCube;
 			sourceTree = "<group>";
@@ -83,7 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				C4AD009266EE253DAD663377 /* Pods_FoundersCube.framework */,
+				58EEBF8E8E6FB1BC6CAF49B5 /* libPods-FoundersCube.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -160,26 +147,19 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "FoundersCube" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				D1D3B7705AC39109D0B1B69C /* [Expo] Configure project */,
+				AF904B80BB962AE5672746A1 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				2615DD16394BB5C1C690201D /* [CP] Embed Pods Frameworks */,
+				1B08AA58FE579487C5CB7CAC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = FoundersCube;
-			packageProductDependencies = (
-				4D6DB4C62CE93E8500CB2030 /* FirebaseAnalytics */,
-				4D6DB4C82CE93E8500CB2030 /* FirebaseAnalyticsOnDeviceConversion */,
-				4D6DB4CA2CE93E8500CB2030 /* FirebaseAnalyticsWithoutAdIdSupport */,
-				4D6DB4CC2CE93E8500CB2030 /* FirebaseAppCheck */,
-				4D6DB4CE2CE93E8500CB2030 /* FirebaseAppDistribution-Beta */,
-			);
 			productName = FoundersCube;
 			productReference = 13B07F961A680F5B00A75B9A /* FoundersCube.app */;
 			productType = "com.apple.product-type.application";
@@ -194,8 +174,6 @@
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1250;
-						DevelopmentTeam = "5BPQUC6K3F";
-						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -208,9 +186,6 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
-			packageReferences = (
-				4D6DB4C52CE93E8500CB2030 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -227,9 +202,8 @@
 			files = (
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				4D6DB4D12CE93EA600CB2030 /* GoogleService-Info.plist in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				41ED1E16EE0966A3CDF2FE5D /* PrivacyInfo.xcprivacy in Resources */,
+				0D81FDBAA8544C358457CE07 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +247,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2615DD16394BB5C1C690201D /* [CP] Embed Pods Frameworks */ = {
+		1B08AA58FE579487C5CB7CAC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -387,7 +361,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FoundersCube/Pods-FoundersCube-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D1D3B7705AC39109D0B1B69C /* [Expo] Configure project */ = {
+		AF904B80BB962AE5672746A1 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -416,7 +390,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
-				E26765FCA7EA4035A96FA2E3 /* noop-file.swift in Sources */,
+				2FF1EA5CB4B64E60A7A637B4 /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,10 +412,7 @@
 				);
 				INFOPLIST_FILE = FoundersCube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -449,16 +420,13 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nuhaverse.foundercube;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nuhaverse.founderscube;
 				PRODUCT_NAME = FoundersCube;
 				SWIFT_OBJC_BRIDGING_HEADER = "FoundersCube/FoundersCube-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
-				DEVELOPMENT_TEAM = "5BPQUC6K3F";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Debug;
 		};
@@ -472,10 +440,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = FoundersCube/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -483,15 +448,12 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nuhaverse.foundercube;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nuhaverse.founderscube;
 				PRODUCT_NAME = FoundersCube;
 				SWIFT_OBJC_BRIDGING_HEADER = "FoundersCube/FoundersCube-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
-				DEVELOPMENT_TEAM = "5BPQUC6K3F";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Release;
 		};
@@ -542,22 +504,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
-					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
-					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
-					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
-					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
-					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
-					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
-					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
-				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					/usr/lib/swift,
-					"$(inherited)",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -612,22 +560,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
-					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
-					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
-					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
-					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
-					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
-					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
-					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
-				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					/usr/lib/swift,
-					"$(inherited)",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = (
@@ -663,45 +597,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		4D6DB4C52CE93E8500CB2030 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.5.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		4D6DB4C62CE93E8500CB2030 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4D6DB4C52CE93E8500CB2030 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		4D6DB4C82CE93E8500CB2030 /* FirebaseAnalyticsOnDeviceConversion */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4D6DB4C52CE93E8500CB2030 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsOnDeviceConversion;
-		};
-		4D6DB4CA2CE93E8500CB2030 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4D6DB4C52CE93E8500CB2030 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
-		};
-		4D6DB4CC2CE93E8500CB2030 /* FirebaseAppCheck */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4D6DB4C52CE93E8500CB2030 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAppCheck;
-		};
-		4D6DB4CE2CE93E8500CB2030 /* FirebaseAppDistribution-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4D6DB4C52CE93E8500CB2030 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseAppDistribution-Beta";
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }

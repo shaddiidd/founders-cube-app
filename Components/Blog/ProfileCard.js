@@ -12,13 +12,9 @@ const ProfileCard = () => {
 
   useEffect(() => {
     const linkCount = user?.links ? Object.keys(user.links).length : 0;
-    if (
-      user?.preview?.imageUrl &&
-      user?.industry &&
-      user?.bio &&
-      linkCount
-    ) setVisible(false);
-    else  setVisible(true);
+    if (user?.preview?.imageUrl && user?.industry && user?.bio && linkCount)
+      setVisible(false);
+    else setVisible(true);
   }, [user]);
 
   if (loading) return <></>;
@@ -72,13 +68,22 @@ const ProfileCard = () => {
               : "checkmark-circle-outline"
           }
           type="ionicon"
-          color={user?.links && Object.keys(user?.links)?.length ? "green" : "grey"}
+          color={
+            user?.links && Object.keys(user?.links)?.length ? "green" : "grey"
+          }
           size={25}
           style={styles.icon}
         />
         <Text>Add links to connect with founders</Text>
       </View>
-      <TouchableOpacity style={styles.btn} activeOpacity={0.7} onPress={() => navigation.navigate("EditProfile", { user, id: user.uid })}>
+      <TouchableOpacity
+        style={styles.btn}
+        activeOpacity={0.7}
+        onPress={() => {
+          navigation.navigate("Account");
+          navigation.push("EditProfile", { user, id: user.uid });
+        }}
+      >
         <Text style={styles.btnTxt}>Edit Profile</Text>
       </TouchableOpacity>
     </View>
@@ -129,9 +134,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   btnTxt: {
-      color: "white",
-      fontWeight: "500",
-  }
+    color: "white",
+    fontWeight: "500",
+  },
 });
 
 export default ProfileCard;

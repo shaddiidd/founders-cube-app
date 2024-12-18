@@ -1,10 +1,39 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import NotificationsScreen from './NotificationsScreen';
 import OnboardingScreen from './OnboardingScreen';
+import { useNavigation } from '@react-navigation/native';
+import * as Linking from "expo-linking";
+import { useEffect } from 'react';
 
 const Stack = createNativeStackNavigator();
 
-const NotificationsStack = () => (
+const NotificationsStack = () => {
+  const navigation = useNavigation();
+  
+  useEffect(() => {
+    const getURL = async () => {
+      const initialUrl = await Linking.getInitialURL();
+      if (initialUrl) {
+        const { hostname, path } = Linking.parse(initialUrl);
+        handleDeepLink(hostname, path);
+      }
+    };
+  
+    getURL();
+  
+    const subscription = Linking.addEventListener("url", ({ url }) => {
+      const { path } = Linking.parse(url);
+      handleDeepLink(hostname, path);
+    });
+  
+    return () => subscription.remove();
+  }, []);
+
+  const handleDeepLink = (hostname,path) => {
+    if (path && hostname === "onboarding") navigation.navigate("Onboarding", { id: path });
+  };
+
+  return (
   <Stack.Navigator
     screenOptions={{
       headerStyle: {
@@ -31,6 +60,6 @@ const NotificationsStack = () => (
       component={OnboardingScreen}
     />
   </Stack.Navigator>
-);
+)};
 
 export default NotificationsStack;

@@ -46,7 +46,7 @@ export default function SubscriptionPlanCard({ payment }) {
           >
             <Text style={{ fontWeight: "500" }}>{user?.expiry ? "Extend Membership" : "Become a Member"}</Text>
           </TouchableOpacity>
-        )} 
+        )}
     </LinearGradient>
   );
 }
@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 10,
-    // paddingHorizontal: 20,
     marginTop: 15,
   },
 });

@@ -19,38 +19,43 @@ const Stack = createNativeStackNavigator();
 
 const AppNavigation = () => {
   const { isAuthenticated, user, getUserData } = useContext(Context);
-  const url = Linking.useURL();
   const navigation = useNavigation();
+  
   useEffect(() => {
-    if (url) {
+    const getURL = async () => {
+      const initialUrl = await Linking.getInitialURL();
+      if (initialUrl) {
+        const { hostname, path } = Linking.parse(initialUrl);
+        handleDeepLink(hostname, path);
+      }
+    };
+  
+    if (isAuthenticated) {
+      getURL();
+      getUserData();
+    }
+  
+    const subscription = Linking.addEventListener("url", ({ url }) => {
       const { hostname, path } = Linking.parse(url);
-      if (hostname === 'blog') {
-        navigation.navigate('Blog', { screen: 'BlogScreen', params: { id: path } });
-      } else if (hostname === 'member') {
-        navigation.navigate('Community', { screen: 'Member', params: { id: path } });
-      } else if (hostname === 'onboarding') {
-        navigation.navigate('Notifications', { screen: 'Onboarding', params: { id: path } });
-      } else if (hostname === 'reset-password') {
-        navigation.navigate('Auth', { screen: 'ResetPassword', params: { verToken: path } });
-      }
-    }
-  }, [url, isAuthenticated]);
-
-
-  useEffect(() => {
-    if (url) {
-      const { path, queryParams } = Linking.parse(url);
-
-      if (path && path.startsWith("blog/")) {
-        const id = path.split("/")[1];
-        navigation.navigate("BlogScreen", { params: { id } });
-      }
-    }
-  }, [url, navigation]);
-
-  useEffect(() => {
-    if (isAuthenticated) getUserData();
+      handleDeepLink(hostname, path);
+    });
+  
+    return () => subscription.remove();
   }, [isAuthenticated]);
+  
+  const handleDeepLink = (hostname, path) => {
+    if (hostname === "blog") {
+      navigation.navigate("Blog");
+      navigation.navigate("BlogScreen", { id: path });
+    } else if (hostname === "member") {
+      navigation.navigate("Community");
+    } else if (hostname === "onboarding") {
+      navigation.navigate("Notifications");
+    } else if (hostname === "reset-password" && !path && isAuthenticated) {
+      navigation.navigate("Account");
+    }
+  };
+  
 
   return (
     <>

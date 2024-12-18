@@ -4,9 +4,9 @@ import { Icon } from 'react-native-elements';
 
 const AuthText = ({ placeholder, value, onChangeText, secureTextEntry, error }) => {
   return (
-    <View style={[styles.container, error && styles.error]}>
+    <View style={[styles.container, error && { borderColor: "red" }]}>
       {secureTextEntry ? (
-        <Icon name="lock-closed" type="ionicon" size={22} />
+        <Icon name="lock-closed" color={error ? "red" : "black"} type="ionicon" size={22} />
       ) : (
         <Icon name="mail" type="ionicon" size={22} />
       )}
@@ -17,9 +17,7 @@ const AuthText = ({ placeholder, value, onChangeText, secureTextEntry, error }) 
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
         style={styles.input}
-        returnKeyType="next"
-        // keyboardType={(!secureTextEntry && Platform.OS === "ios") ? "email-address" : null}
-        keyboardType={!secureTextEntry ? "email-address" : "default"}
+        keyboardType={(!secureTextEntry && Platform.OS === "ios") ? "email-address" : null}
         textContentType={secureTextEntry ? "password" : "email"}
         autoCapitalize="none"
         importantForAutofill="yes"
@@ -51,9 +49,6 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     height: '100%',
     paddingHorizontal: 10,
-  },
-  error: {
-    borderColor: '#BC0000',
   },
 });
 

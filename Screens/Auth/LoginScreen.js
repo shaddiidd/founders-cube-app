@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   View,
   Text,
@@ -10,16 +10,18 @@ import {
   KeyboardAvoidingView,
   Platform,
   Keyboard,
+  TextInput,
   TouchableWithoutFeedback,
 } from "react-native";
 import AuthText from "../../Components/Text/AuthText";
 import Context from "../../Context";
 import { useNavigation } from "@react-navigation/native";
+import { Icon } from "react-native-elements";
 
 const LoginScreen = () => {
   const { auth } = useContext(Context);
   const navigation = useNavigation();
-
+  const [emailAddress, setEmailAddress] = useState("");
   const [data, setData] = useState({
     email: {
       text: "",
@@ -53,29 +55,25 @@ const LoginScreen = () => {
 
   const login = async () => {
     if (data.email.text !== "" && data.password.text !== "") {
+      Keyboard.dismiss();
       const body = { email: data.email.text, password: data.password.text };
       await auth(body);
     } else {
-      if (data.email.text === "") {
-        setData({
-          ...data,
-          email: {
-            text: "",
-            error: true,
-          },
-        });
-      }
-      if (data.password.text === "") {
-        setData({
-          ...data,
-          password: {
-            text: "",
-            error: true,
-          },
-        });
-      }
+      setData((prevState) => ({
+        ...prevState,
+        email: {
+          text: prevState.email.text,
+          error: prevState.email.text === "" ? true : false,
+        },
+        password: {
+          text: prevState.password.text,
+          error: prevState.password.text === "" ? true : false,
+        },
+      }));
     }
   };
+
+  useEffect(() => setEmail(emailAddress), [emailAddress]);
 
   return (
     <KeyboardAvoidingView
@@ -99,12 +97,29 @@ const LoginScreen = () => {
               <Text style={styles.title}>Welcome!</Text>
               <Text style={styles.subtitle}>Enter your email and password</Text>
             </View>
-            <AuthText
-              placeholder="Email"
-              value={data.email.text}
-              onChangeText={setEmail}
-              error={data.email.error}
-            />
+            <View
+              style={[styles.inputContainer, data.email.error && styles.error]}
+            >
+              <Icon
+                name="mail"
+                color={data.email.error ? "red" : "black"}
+                type="ionicon"
+                size={22}
+              />
+              <TextInput
+                placeholder="Email"
+                placeholderTextColor="#666"
+                value={emailAddress}
+                onChangeText={(value) => setEmailAddress(value)}
+                style={styles.input}
+                returnKeyType="next"
+                keyboardType={Platform.OS === "ios" ? "email-address" : null}
+                textContentType="emailAddress"
+                autoCapitalize="none"
+                importantForAutofill="yes"
+                autoComplete=""
+              />
+            </View>
             <AuthText
               placeholder="Password"
               value={data.password.text}
@@ -130,13 +145,13 @@ const LoginScreen = () => {
             </TouchableOpacity>
           </View>
           <View style={styles.applyContainer}>
-            <Text style={styles.applyText}>Not a member? </Text>
+            {/* <Text style={styles.applyText}>Not a member? </Text>
             <TouchableOpacity
               activeOpacity={0.7}
               onPress={() => navigation.navigate("Apply")}
             >
               <Text style={[styles.applyText, styles.applyBtn]}>Apply now</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </SafeAreaView>
       </TouchableWithoutFeedback>
@@ -209,6 +224,32 @@ const styles = StyleSheet.create({
     color: "black",
     fontWeight: "600",
     marginBottom: 20,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    marginVertical: 10,
+    height: 55,
+    borderRadius: 10,
+    borderWidth: 1,
+    paddingHorizontal: 10,
+  },
+  icon: {
+    marginLeft: 20,
+    width: 20,
+    height: 20,
+    resizeMode: "contain",
+  },
+  input: {
+    flex: 1,
+    fontSize: 16,
+    fontWeight: "500",
+    height: "100%",
+    paddingHorizontal: 10,
+  },
+  error: {
+    borderColor: "red",
   },
 });
 

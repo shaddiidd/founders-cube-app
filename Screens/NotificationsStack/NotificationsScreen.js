@@ -48,17 +48,23 @@ const NotificationsScreen = () => {
 
   const read = (id) => {
     post(`notification/read/${id}`)
-      .then(() => fetchNotifications())
-  }
+    const newNotifications = notifications.map((notification) => {
+      if (notification.id === id) {
+        return { ...notification, isRead: true };
+      }
+      return notification;
+    });
+
+    setNotifications(newNotifications);
+  };
 
   const readAll = () => {
-    setLoading(true);
-    post("notification/readAll")
-      .then(() => {
-        setNotifications([]);
-        fetchNotifications();
-      })
-      .finally(() => setLoading(false));
+    post("notification/readAll");
+    const newNotifications = notifications.map((notification) => {
+      notification.isRead = true;
+      return notification;
+    });
+    setNotifications(newNotifications);
   };
 
   if (loading) return <View style={styles.container} />;
@@ -82,7 +88,7 @@ const NotificationsScreen = () => {
             <NotificationCard
               notification={notification}
               read={read}
-              key={notification.created}
+              key={notification?.id || notification?.created}
             />
           ))
         ) : (
@@ -95,7 +101,12 @@ const NotificationsScreen = () => {
           style={styles.postBtn}
           activeOpacity={0.7}
         >
-          <Icon name="eye-outline" type="ionicon" color="white" size={25} />
+          <Icon
+            name="mark-email-read"
+            type="material"
+            color="white"
+            size={25}
+          />
         </TouchableOpacity>
       ) : (
         <></>
