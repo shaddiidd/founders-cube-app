@@ -80,14 +80,14 @@ Just download the Founders Cube app or head to (https://community.founderscube.c
       {user?.type === "member" && (
         <ListItem icon="link" title="Referral Code" onPress={handleReferral} />
       )}
-      {/* {user?.type === "member" && (
+      {user?.type === "member" && (
         <ListItem
           nav
           icon="people-outline"
           title="Membership"
           to="MembershipScreen"
         />
-      )} */}
+      )}
       <CodeOfConducModal />
       <ListItem
         nav

@@ -145,13 +145,13 @@ const LoginScreen = () => {
             </TouchableOpacity>
           </View>
           <View style={styles.applyContainer}>
-            {/* <Text style={styles.applyText}>Not a member? </Text>
+            <Text style={styles.applyText}>Not a member? </Text>
             <TouchableOpacity
               activeOpacity={0.7}
               onPress={() => navigation.navigate("Apply")}
             >
               <Text style={[styles.applyText, styles.applyBtn]}>Apply now</Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           </View>
         </SafeAreaView>
       </TouchableWithoutFeedback>

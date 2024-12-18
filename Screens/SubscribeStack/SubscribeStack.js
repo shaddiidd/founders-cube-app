@@ -38,7 +38,7 @@ const SubscribeStack = () => {
       }}
       initialRouteName="MembershipScreen"
     >
-      {/* <Stack.Screen
+      <Stack.Screen
         name="MembershipScreen"
         component={MembershipScreen}
         options={{
@@ -79,14 +79,14 @@ const SubscribeStack = () => {
         options={{
           title: "Screenshot"
         }}
-      /> */}
-      <Stack.Screen
+      />
+      {/* <Stack.Screen
         name="SubscribeScreen"
         component={SubscribeScreen}
         options={{
           title: "Membership",
         }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 };

@@ -97,7 +97,7 @@ const AccountStack = () => {
           title: "Change Password",
         }}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="PaymentDetails"
         component={PaymentDetailsScreen}
         options={{
@@ -138,7 +138,7 @@ const AccountStack = () => {
         options={{
           title: "Screenshot",
         }}
-      /> */}
+      />
       <Stack.Screen
         name="DeleteAccount"
         component={DeleteAccountScreen}

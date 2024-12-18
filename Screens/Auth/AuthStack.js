@@ -54,22 +54,22 @@ const AccountStack = () => {
       },
       headerTitleAlign: "center",
     }}
-    initialRouteName='Login'
+    initialRouteName='Welcome'
   >
-    {/* <Stack.Screen 
+    <Stack.Screen 
       name="Welcome" 
       component={WelcomeScreen}
       options={{ headerShown: false }}
-    /> */}
+    />
     <Stack.Screen 
       name="Login" 
       component={LoginScreen}
       options={{ headerShown: false }}
     />
-    {/* <Stack.Screen 
+    <Stack.Screen 
       name="Apply" 
       component={ApplyScreen}
-    /> */}
+    />
     <Stack.Screen 
       name="ForgotPassword" 
       component={ForgotPasswordScreen}
@@ -77,13 +77,13 @@ const AccountStack = () => {
         title: "Forgot Password"
       }}
     />
-    {/* <Stack.Screen 
+    <Stack.Screen 
       name="List" 
       component={ListScreen} 
       options={{
         title: "Choose from the list"
       }}
-    /> */}
+    />
     <Stack.Screen 
       name="ResetPassword" 
       component={ResetPasswordScreen} 
