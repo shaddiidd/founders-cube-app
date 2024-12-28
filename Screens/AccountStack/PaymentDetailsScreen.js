@@ -67,6 +67,14 @@ export default function PaymentDetailsScreen({ route }) {
               color="#437689"
             />
           )}
+          {payment?.method?.toLowerCase() === "apple" && (
+            <Icon
+              name="logo-apple"
+              type="ionicon"
+              size={35}
+              color="#437689"
+            />
+          )}
         </View>
       </View>
       <View style={styles.card}>

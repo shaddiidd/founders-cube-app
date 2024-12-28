@@ -40,6 +40,9 @@ export default function PaymentListItem({ payment }) {
         {payment.method.toLowerCase() === "gift" && (
           <Icon name="gift-outline" type="ionicon" size={30} color="#437689" />
         )}
+        {payment.method.toLowerCase() === "apple" && (
+          <Icon name="logo-apple" type="ionicon" size={30} color={payment?.status === "approved" ? "#437689" : "white"} />
+        )}
       </View>
       <View style={styles.listItemContent}>
         <Text style={styles.listItemDate}>{payment.created}</Text>

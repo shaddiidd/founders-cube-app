@@ -30,6 +30,14 @@ const PaymentMethodCard = ({ type, onPress }) => {
               color="#437689"
             />
           )}
+          {type === "Apple Pay" && (
+            <Icon
+              name="logo-apple"
+              type="ionicon"
+              size={30}
+              color="#437689"
+            />
+          )}
         </View>
         <Text style={styles.title}>{type}</Text>
       </View>
