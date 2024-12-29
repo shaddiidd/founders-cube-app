@@ -27,13 +27,7 @@ const AccountHome = () => {
   };
   const handleReferral = async () => {
     try {
-      const message = `Salam! 🚀
-
-I'm part of the *Founders Cube* community, and it's been a game-changer for me! If you're serious about growing your business, I think you'll love it too.
-
-Here’s an exclusive perk for you: use my referral code ${user.referralCode} to get *2 FREE month* when you join! 🌟
-
-Just download the Founders Cube app or head to (https://community.founderscube.com/apply). Let's grow and succeed together—can’t wait to see you inside! 💡`;
+      const message = `Salam! 🚀\n\nI'm part of the *Founders Cube* community, and it's been a game-changer for me!\n\nTo get *2 FREE months* when you join, insert my referral code:\n\n${user.referralCode}\n\nLet's grow and succeed together—can’t wait to see you inside! 💡`;
       await Share.share({ message });
     } catch (error) {
       Alert.alert("Error", "An error occurred while sharing the message.");
