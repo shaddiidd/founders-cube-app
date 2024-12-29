@@ -170,6 +170,16 @@ const PaymentScreen = ({ route }) => {
           </View>
         )}
       </View>
+      {!selectedImage ? (
+        <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={pickImage}>
+          <Icon name="image" color="white" />
+          <Text style={styles.buttonText}> Upload Screenshot</Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity style={styles.button} onPress={submit}>
+          <Text style={styles.buttonText}>Submit</Text>
+        </TouchableOpacity>
+      )}
 
       {selectedImage && (
         <TouchableOpacity onPress={() => setSelectedImage(null)} activeOpacity={0.7} style={styles.imagePreviewContainer}>
@@ -180,17 +190,6 @@ const PaymentScreen = ({ route }) => {
           <View style={styles.trash}>
             <Icon name="trash" type="ionicon" color="white" size={10} />
           </View>
-        </TouchableOpacity>
-      )}
-
-      {!selectedImage ? (
-        <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={pickImage}>
-          <Icon name="image" color="white" />
-          <Text style={styles.buttonText}> Upload Screenshot</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity style={styles.button} onPress={submit}>
-          <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -251,7 +250,7 @@ const styles = StyleSheet.create({
     textAlign: "right",
   },
   imagePreviewContainer: {
-    marginTop: 15,
+    // marginTop: 15,
     borderRadius: 10,
     borderColor: "#ccc",
     borderWidth: 1,

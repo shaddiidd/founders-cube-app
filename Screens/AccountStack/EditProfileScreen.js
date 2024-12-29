@@ -221,6 +221,9 @@ const EditProfileScreen = ({ route }) => {
             style={styles.profileImage}
           />
         </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.7} onPress={pickImage}>
+          <Text style={{ color: "#437689", fontSize: 16, fontWeight: "500", marginBottom: 10, marginTop: -5 }}>Upload picture</Text>
+        </TouchableOpacity>
 
         <View style={styles.userInfo}>
           <TopPlaceholder

@@ -11,12 +11,14 @@ import PagerView from "react-native-pager-view";
 import { get } from "../../fetch";
 import Context from "../../Context";
 import PlansOverviewCard from "../../Components/Account/PlansOverviewCard";
+import { Icon } from "react-native-elements";
 
 export default function MembershipPlansScreen({ navigation }) {
   const [packs, setPacks] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const { setLoading } = useContext(Context);
   const { width } = Dimensions.get("window");
+  const pagerViewRef = React.useRef(null); // Ref for PagerView
 
   useEffect(() => {
     setLoading(true);
@@ -38,41 +40,83 @@ export default function MembershipPlansScreen({ navigation }) {
       });
   }, []);
 
+  const handleNext = () => {
+    if (pagerViewRef.current && currentIndex < packs.length - 1) {
+      pagerViewRef.current.setPage(currentIndex + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (pagerViewRef.current && currentIndex > 0) {
+      pagerViewRef.current.setPage(currentIndex - 1);
+    }
+  };
+
   return (
     <View style={styles.container}>
       {packs.length ? (
-        <PagerView
-          style={styles.pagerView}
-          initialPage={0}
-          onPageSelected={(e) => setCurrentIndex(e.nativeEvent.position)}
-        >
-          {packs.map((item, index) => (
-            <View style={styles.page} key={item.id}>
-              <PlansOverviewCard
-                pack={item}
-                onPress={() =>
-                  navigation.navigate("PaymentMethodScreen", { pack: item })
-                }
-              />
+        <>
+          <PagerView
+            style={styles.pagerView}
+            initialPage={0}
+            onPageSelected={(e) => setCurrentIndex(e.nativeEvent.position)}
+            ref={pagerViewRef}
+          >
+            {packs.map((item, index) => (
+              <View style={styles.page} key={item.id}>
+                <PlansOverviewCard
+                  pack={item}
+                  onPress={() =>
+                    navigation.navigate("PaymentMethodScreen", { pack: item })
+                  }
+                />
+              </View>
+            ))}
+          </PagerView>
+
+          {packs.length > 1 && (
+            <View style={styles.paginationContainer}>
+              {packs.map((_, index) => (
+                <View
+                  key={index}
+                  style={[
+                    styles.dot,
+                    currentIndex === index
+                      ? styles.activeDot
+                      : styles.inactiveDot,
+                  ]}
+                />
+              ))}
             </View>
-          ))}
-        </PagerView>
+          )}
+
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={handlePrevious}
+              disabled={currentIndex === 0}
+              activeOpacity={0.7}
+              style={[
+                styles.navButton,
+                currentIndex === 0 && styles.disabledButton,
+              ]}
+            >
+              <Icon name="arrow-left" color="#fff" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleNext}
+              disabled={currentIndex === packs.length - 1}
+              activeOpacity={0.7}
+              style={[
+                styles.navButton,
+                currentIndex === packs.length - 1 && styles.disabledButton,
+              ]}
+            >
+              <Icon name="arrow-right" color="#fff" />
+            </TouchableOpacity>
+          </View>
+        </>
       ) : (
         <></>
-      )}
-
-      {packs.length > 1 && (
-        <View style={styles.paginationContainer}>
-          {packs.map((_, index) => (
-            <View
-              key={index}
-              style={[
-                styles.dot,
-                currentIndex === index ? styles.activeDot : styles.inactiveDot,
-              ]}
-            />
-          ))}
-        </View>
       )}
     </View>
   );
@@ -117,5 +161,30 @@ const styles = StyleSheet.create({
   },
   inactiveDot: {
     backgroundColor: "#ccc",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    position: "absolute",
+    paddingHorizontal: 5,
+    top: "45%",
+    left: 0,
+    right: 0,
+  },
+  navButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "#000",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  disabledButton: {
+    backgroundColor: "#aaa",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
