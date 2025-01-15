@@ -20,17 +20,14 @@
     "ios": {
       "supportsTablet": false,
       "requireFullScreen": true,
+      "buildNumber": "18",
       "bundleIdentifier": "com.nuhaverse.founderscube",
-      "associatedDomains": [
-        "applinks:community.thefounderscube.com"
-      ],
+      "associatedDomains": ["applinks:community.thefounderscube.com"],
       "entitlements": {
         "aps-environment": "production"
       },
       "infoPlist": {
-        "UISupportedInterfaceOrientations": [
-          "UIInterfaceOrientationPortrait"
-        ],
+        "UISupportedInterfaceOrientations": ["UIInterfaceOrientationPortrait"],
         "UIRequiresFullScreen": true,
         "NSPhotoLibraryUsageDescription": "We use your photo library to allow you to upload images for personalized profiles and posting blogs. For example, you can select a photo to set as your profile picture or upload a photo to your blog.",
         "NSContactsUsageDescription": "We use your contacts to let you save members' details to your device's contacts for easier access and communication.",
@@ -42,7 +39,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#F6F7F7"
       },
-      "package": "com.nuhaverse.founderscube",
+      "versionCode": 18,
+      "package": "com.nuhaverse.thefounderscube",
       "permissions": [
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",

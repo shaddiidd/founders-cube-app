@@ -7,8 +7,6 @@ PODS:
     - ExpoModulesCore
   - EXConstants (17.0.3):
     - ExpoModulesCore
-  - EXGL_CPP (11.4.0):
-    - React-jsi
   - EXImageLoader (5.0.0):
     - ExpoModulesCore
     - React-Core
@@ -238,9 +236,6 @@ PODS:
     - ExpoModulesCore
   - ExpoFont (13.0.1):
     - ExpoModulesCore
-  - ExpoGL (15.0.2):
-    - ExpoModulesCore
-    - ReactCommon/turbomodule/core
   - ExpoImageManipulator (13.0.5):
     - EXImageLoader
     - ExpoModulesCore
@@ -2027,12 +2022,6 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNIap (12.16.0):
-    - RCT-Folly
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - ReactCommon/turbomodule/core
   - RNImageCropPicker (0.41.5):
     - React-Core
     - React-RCTImage
@@ -2125,7 +2114,6 @@ DEPENDENCIES:
   - EASClient (from `../node_modules/expo-eas-client/ios`)
   - EXApplication (from `../node_modules/expo-application/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
-  - EXGL_CPP (from `../node_modules/expo-gl-cpp/cpp`)
   - EXImageLoader (from `../node_modules/expo-image-loader/ios`)
   - EXJSONUtils (from `../node_modules/expo-json-utils/ios`)
   - EXManifests (from `../node_modules/expo-manifests/ios`)
@@ -2141,7 +2129,6 @@ DEPENDENCIES:
   - ExpoDevice (from `../node_modules/expo-device/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
   - ExpoFont (from `../node_modules/expo-font/ios`)
-  - ExpoGL (from `../node_modules/expo-gl`)
   - ExpoImageManipulator (from `../node_modules/expo-image-manipulator/ios`)
   - ExpoImagePicker (from `../node_modules/expo-image-picker/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
@@ -2221,7 +2208,6 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNIap (from `../node_modules/react-native-iap`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNPurchases (from `../node_modules/react-native-purchases`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -2250,8 +2236,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-application/ios"
   EXConstants:
     :path: "../node_modules/expo-constants/ios"
-  EXGL_CPP:
-    :path: "../node_modules/expo-gl-cpp/cpp"
   EXImageLoader:
     :path: "../node_modules/expo-image-loader/ios"
   EXJSONUtils:
@@ -2282,8 +2266,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-file-system/ios"
   ExpoFont:
     :path: "../node_modules/expo-font/ios"
-  ExpoGL:
-    :path: "../node_modules/expo-gl"
   ExpoImageManipulator:
     :path: "../node_modules/expo-image-manipulator/ios"
   ExpoImagePicker:
@@ -2439,8 +2421,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-picker/picker"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
-  RNIap:
-    :path: "../node_modules/react-native-iap"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   RNPurchases:
@@ -2458,7 +2438,6 @@ SPEC CHECKSUMS:
   EASClient: 720af5473430a688e792ffa91f33d11fe72fcb89
   EXApplication: e1ad9c950c98b2b134578092c948b10b403f3ea7
   EXConstants: dd2fe64c6cdb1383b694c309a63028a8e9f2be6d
-  EXGL_CPP: 26d0d7639ec8fcf9133c2883926ca7a005625ee6
   EXImageLoader: 759063a65ab016b836f73972d3bb25404888713d
   EXJSONUtils: 01fc7492b66c234e395dcffdd5f53439c5c29c93
   EXManifests: f30a0c5d3d6cad8db9c01bab579e0aa0df5d3cb2
@@ -2474,7 +2453,6 @@ SPEC CHECKSUMS:
   ExpoDevice: e24dd19a43065182eb246bc0e7f84186862f1e83
   ExpoFileSystem: dc2679a2b5d4c465ca881129074da95faee943d5
   ExpoFont: 7522d869d84ee2ee8093ee997fef5b86f85d856b
-  ExpoGL: 3e7c3b8478a6783d737103b33b9c11235deb6675
   ExpoImageManipulator: 774eb1a17c5db07944d6f9000650d422ebb3ce47
   ExpoImagePicker: a4be622c7081848925519d3329c0ebfac48f0d92
   ExpoKeepAwake: 783e68647b969b210a786047c3daa7b753dcac1f
@@ -2556,7 +2534,6 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: a927b768986f83467b635cf6d7559e6edb46db7a
   RNCPicker: b978067931744f5a7316b48b8dcf145d4d722672
   RNGestureHandler: fc5ce5bf284640d3af6431c3a5c3bc121e98d045
-  RNIap: 2c3c65e445757dde21e566faa13984786d23fab1
   RNImageCropPicker: a536bb88eade8336e1d18fdeafa77dc893fbc42e
   RNPurchases: a99a9d9139c977811e5db73178ea21d8c12f11ac
   RNScreens: 27587018b2e6082f5172b1ecf158c14a0e8842d6

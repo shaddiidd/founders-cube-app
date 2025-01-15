@@ -5,7 +5,7 @@ import {
   Alert,
   Dimensions,
   Text,
-  TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import PagerView from "react-native-pager-view";
 import { get } from "../../fetch";
@@ -53,8 +53,8 @@ export default function MembershipPlansScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      {packs.length ? (
+    <ScrollView contentContainerStyle={{ alignItems: "center", rowGap: 10 }} style={styles.container}>
+      {/* {packs.length ? (
         <>
           <PagerView
             style={styles.pagerView}
@@ -117,8 +117,18 @@ export default function MembershipPlansScreen({ navigation }) {
         </>
       ) : (
         <></>
+      )} */}
+      {packs.length ? packs.map((pack) =>
+        <PlansOverviewCard
+          pack={pack}
+          onPress={() =>
+            navigation.navigate("PaymentMethodScreen", { pack })
+          }
+        />
+      ) : (
+        <></>
       )}
-    </View>
+    </ScrollView>
   );
 }
 

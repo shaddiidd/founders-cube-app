@@ -1,26 +1,53 @@
-import { useNavigation } from "@react-navigation/native";
-import { LinearGradient } from "expo-linear-gradient";
+import { useContext } from "react";
 import {
   View,
   StyleSheet,
   Alert,
   Text,
   TouchableOpacity,
-  Dimensions,
+  ScrollView,
+  Platform
 } from "react-native";
 import { Icon } from "react-native-elements";
+import Context from "../../Context";
+import { post } from "../../fetch";
+import Purchases from "react-native-purchases";
+import { useNavigation } from "@react-navigation/native";
 
 export default function PlansOverviewCard({ onPress, pack = {} }) {
+  const { user, setLoading } = useContext(Context);
   const navigation = useNavigation();
+
+  const handleAndroidPayment = () => navigation.navigate("PaymentMethodScreen", { pack });
+  const handleApplePayment = async () => {
+    setLoading(true);
+    try {
+      Purchases.configure({ apiKey: "appl_kguhLcJJUzoHonbGWcUPFuCSmXg" });
+      const products = await Purchases.getProducts([pack.productId]);
+      if (!products.length) {
+        console.error("No products found");
+        return;
+      }
+      await Purchases.purchaseProduct(pack.productId);
+      await post("sales/createAppleOrder", { userId: user.uid, productId: pack.productId });
+      navigation.pop();
+      Alert.alert("Transaction successful", `You have been subscribed to the ${pack.name} Membership`);
+    } catch (error) {
+      Alert.alert("Transaction failed", error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <View style={styles.cardContainer}>
       <View style={{ flexDirection: "row", alignItems: "center", marginTop: 8, marginBottom: 15 }}>
         {pack.isFavourite ? <Icon name="star" color="gold" /> : <></>}
         <Text style={styles.name}> {pack.name || ""}</Text>
       </View>
-      <View style={styles.card}>
+      <View style={[styles.card, styles.scrollContent]}>
         <View style={{ width: "100%" }}>
-          <Text style={styles.price}>JD {pack.price || ""}</Text>
+          <Text style={styles.price}>${pack.appStorePrice || ""}</Text>
           <Text style={styles.length}>{pack.duration || ""} Months</Text>
           <View style={styles.sep} />
           {pack.features?.map((bullet) => (
@@ -30,7 +57,7 @@ export default function PlansOverviewCard({ onPress, pack = {} }) {
             </View>
           ))}
         </View>
-        <TouchableOpacity style={styles.btn} activeOpacity={0.7} onPress={onPress}>
+        <TouchableOpacity style={styles.btn} activeOpacity={0.7} onPress={handleApplePayment}>
           <Text style={styles.btnText}>Go {pack.name}</Text>
         </TouchableOpacity>
       </View>
@@ -42,7 +69,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: "black",
     width: "95%",
-    height: "100%",
+    // height: "100%",
     padding: 7,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -63,6 +90,10 @@ const styles = StyleSheet.create({
     width: "100%",
     flex: 1,
     padding: 15,
+    borderRadius: 10,
+  },
+  scrollContent: {
+    // flex: 1,
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "space-between",

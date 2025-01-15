@@ -37,6 +37,7 @@
         <data android:scheme="founderscube"/>
         <data android:scheme="com.nuhaverse.founderscube"/>
         <data android:scheme="exp+founders-cube"/>
+        <data android:scheme="com.nuhaverse.thefounderscube"/>
       </intent-filter>
     </activity>
   </application>

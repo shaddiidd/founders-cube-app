@@ -37,8 +37,8 @@ export default function SubscriptionPlanCard({ payment }) {
       {payment?.status.toLowerCase() === "pending" &&(
         <Text style={{ color: "white" }}>Your last payment is being reviewed</Text>
       )}
-      {/* {isExpiryLessThan30DaysAway() &&
-        payment?.status?.toLowerCase() !== "pending" && ( */}
+      {isExpiryLessThan30DaysAway() &&
+        payment?.status?.toLowerCase() !== "pending" && (
           <TouchableOpacity
             style={styles.btn}
             activeOpacity={0.7}
@@ -46,7 +46,7 @@ export default function SubscriptionPlanCard({ payment }) {
           >
             <Text style={{ fontWeight: "500" }}>{user?.expiry ? "Extend Membership" : "Become a Member"}</Text>
           </TouchableOpacity>
-        {/* )} */}
+        )}
     </LinearGradient>
   );
 }
