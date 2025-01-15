@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import Provider from "./Provider";
-import Container from "./Container";
+import Provider from "./src/states/Provider";
+import Container from "./src/screens/app/Container";
 import NetInfo from "@react-native-community/netinfo";
-import NoNetworkScreen from "./NoNetworkScreen";
+import NoNetworkScreen from "./src/screens/app/NoNetworkScreen";
 import { ActivityIndicator, View, StyleSheet, Alert } from "react-native";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
-import { linking } from "./linking";
+import { linking } from "./src/navigation/linking";
 
 export default function App() {
   const [isConnected, setIsConnected] = useState(null);
