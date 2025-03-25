@@ -17,7 +17,7 @@ const ForgotPasswordScreen = () => {
         navigation.pop();
         Alert.alert("Success!", "Check your email for a reset password link.")
       })
-      .catch((error) => Alert.alert("Sorry!", error?.response?.data?.error || "There seems to be a problem. Please come back later."))
+      .catch(() => Alert.alert("Sorry!", "Make sure you've entered the correct email."))
       .finally(() => setLoading(false))
   }
 
